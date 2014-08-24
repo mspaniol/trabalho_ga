@@ -31,7 +31,9 @@
               <Component id="btnAlunos" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnEquipes" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="165" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnTurmas" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,6 +45,7 @@
                   <Component id="btnDisciplinas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEquipes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnTurmas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="233" max="32767" attributes="0"/>
           </Group>
@@ -72,6 +75,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEquipesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTurmas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Turmas"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTurmasActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

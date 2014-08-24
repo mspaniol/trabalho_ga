@@ -31,6 +31,7 @@ public class TelaInicial extends javax.swing.JFrame {
         btnDisciplinas = new javax.swing.JButton();
         btnAlunos = new javax.swing.JButton();
         btnEquipes = new javax.swing.JButton();
+        btnTurmas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela inicial");
@@ -56,6 +57,13 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnTurmas.setText("Turmas");
+        btnTurmas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTurmasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,7 +75,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(btnAlunos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEquipes)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTurmas)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +86,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDisciplinas)
                     .addComponent(btnAlunos)
-                    .addComponent(btnEquipes))
+                    .addComponent(btnEquipes)
+                    .addComponent(btnTurmas))
                 .addContainerGap(233, Short.MAX_VALUE))
         );
 
@@ -99,6 +110,12 @@ public class TelaInicial extends javax.swing.JFrame {
     private void btnEquipesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEquipesActionPerformed
+
+    private void btnTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurmasActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        //new Turmas(this).setVisible(true);
+    }//GEN-LAST:event_btnTurmasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,5 +156,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnAlunos;
     private javax.swing.JButton btnDisciplinas;
     private javax.swing.JButton btnEquipes;
+    private javax.swing.JButton btnTurmas;
     // End of variables declaration//GEN-END:variables
 }
