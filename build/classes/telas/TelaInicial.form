@@ -27,7 +27,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnDisciplinas" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="311" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnAlunos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="228" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -35,7 +37,10 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="btnDisciplinas" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnDisciplinas" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="233" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -48,6 +53,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDisciplinasActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAlunos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Alunos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlunosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -22,42 +22,42 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author mozart
  */
 @Entity
-@Table(name = "disciplina")
+@Table(name = "aluno")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d"),
-    @NamedQuery(name = "Disciplina.findByDisciplinaID", query = "SELECT d FROM Disciplina d WHERE d.disciplinaID = :disciplinaID"),
-    @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome")})
-public class Disciplina implements Serializable {
+    @NamedQuery(name = "Aluno.findAll", query = "SELECT * FROM Aluno"),
+    @NamedQuery(name = "Aluno.findByAlunoID", query = "SELECT * FROM Aluno AS a WHERE a.alunoID = :alunoID"),
+    @NamedQuery(name = "Aluno.findByNome", query = "SELECT * FROM Aluno AS a WHERE a.nome = :nome")})
+public class Aluno implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "DisciplinaID")
-    private Integer disciplinaID;
+    @Column(name = "AlunoID")
+    private Integer alunoID;
     @Basic(optional = false)
     @Column(name = "Nome")
     private String nome;
 
-    public Disciplina() {
+    public Aluno() {
     }
 
-    public Disciplina(Integer disciplinaID) {
-        this.disciplinaID = disciplinaID;
+    public Aluno(Integer alunoID) {
+        this.alunoID = alunoID;
     }
 
-    public Disciplina(Integer disciplinaID, String nome) {
-        this.disciplinaID = disciplinaID;
+    public Aluno(Integer alunoID, String nome) {
+        this.alunoID = alunoID;
         this.nome = nome;
     }
 
-    public Integer getDisciplinaID() {
-        return disciplinaID;
+    public Integer getAlunoID() {
+        return alunoID;
     }
 
-    public void setDisciplinaID(Integer disciplinaID) {
-        this.disciplinaID = disciplinaID;
+    public void setAlunoID(Integer alunoID) {
+        this.alunoID = alunoID;
     }
 
     public String getNome() {
@@ -71,18 +71,18 @@ public class Disciplina implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (disciplinaID != null ? disciplinaID.hashCode() : 0);
+        hash += (alunoID != null ? alunoID.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Disciplina)) {
+        if (!(object instanceof Aluno)) {
             return false;
         }
-        Disciplina other = (Disciplina) object;
-        if ((this.disciplinaID == null && other.disciplinaID != null) || (this.disciplinaID != null && !this.disciplinaID.equals(other.disciplinaID))) {
+        Aluno other = (Aluno) object;
+        if ((this.alunoID == null && other.alunoID != null) || (this.alunoID != null && !this.alunoID.equals(other.alunoID))) {
             return false;
         }
         return true;
@@ -90,7 +90,7 @@ public class Disciplina implements Serializable {
 
     @Override
     public String toString() {
-        return "controles.Disciplina[ disciplinaID=" + disciplinaID + " ]";
+        return "controles.Aluno[ alunoID=" + alunoID + " ]";
     }
 
 }
