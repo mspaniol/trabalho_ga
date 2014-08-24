@@ -44,7 +44,7 @@ public class Equipes extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Equipes");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -101,6 +101,8 @@ public class Equipes extends javax.swing.JFrame {
                 .addContainerGap(240, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleName("");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -111,6 +113,7 @@ public class Equipes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // ativar eventos da tela principal
         this.tela.setEnabled(true);
         this.tela.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
