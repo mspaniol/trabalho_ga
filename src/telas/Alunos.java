@@ -3,31 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package telas;
 
-import controles.DisciplinaController;
-import entidades.Disciplina;
+import controles.AlunoController;
+import entidades.Aluno;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author mozart
+ * @author JC
  */
-public class Disciplinas extends javax.swing.JFrame {
+public class Alunos extends javax.swing.JFrame {
 
     private TelaInicial tela;
+
     /**
-     * Creates new form Disciplinas
+     * Creates new form Alunos
      */
-    private Disciplinas() {
+    public Alunos() {
         initComponents();
     }
-    
-    public Disciplinas(TelaInicial tela)
-    {
+
+    public Alunos(TelaInicial tela) {
         this();
-        
+
         this.tela = tela;
     }
 
@@ -41,12 +40,12 @@ public class Disciplinas extends javax.swing.JFrame {
     private void initComponents() {
 
         lblNome = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
+        bntSair = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Disciplinas");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -62,10 +61,10 @@ public class Disciplinas extends javax.swing.JFrame {
             }
         });
 
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        bntSair.setText("Sair");
+        bntSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                bntSairActionPerformed(evt);
             }
         });
 
@@ -83,7 +82,7 @@ public class Disciplinas extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSair)))
+                        .addComponent(bntSair)))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +95,7 @@ public class Disciplinas extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
-                    .addComponent(btnSair))
+                    .addComponent(bntSair))
                 .addContainerGap(228, Short.MAX_VALUE))
         );
 
@@ -104,38 +103,38 @@ public class Disciplinas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * fecha a janela de cadastro de alunos
+     *
+     * @param evt
+     */
+    private void bntSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntSairActionPerformed
+        this.tela.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_bntSairActionPerformed
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // ativar eventos da tela principal
         this.tela.setEnabled(true);
         this.tela.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // salva a disciplina
+        // salva o aluno
         try {
             String nome = txtNome.getText();
 
-            Disciplina d = new Disciplina(nome);
+            Aluno aluno = new Aluno(nome);
 
-            DisciplinaController controlador = new DisciplinaController();
+            AlunoController controlador = new AlunoController();
 
-            controlador.cadastrarDisciplina(d);
+            controlador.cadastrarAluno(aluno);
 
-            JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso");
+            JOptionPane.showMessageDialog(this, "Aluno cadastrado com sucesso");
             txtNome.setText("");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar disciplina: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar aluno: " + e.getMessage());
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    /**
-     * fecha a janela de cadastro de disciplinas
-     * @param evt 
-     */
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        this.tela.setEnabled(true);
-        this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,27 +153,27 @@ public class Disciplinas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Disciplinas().setVisible(true);
+                new Alunos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntSair;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblNome;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables

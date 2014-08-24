@@ -29,6 +29,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         btnDisciplinas = new javax.swing.JButton();
+        btnAlunos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela inicial");
@@ -40,6 +41,13 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        btnAlunos.setText("Alunos");
+        btnAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlunosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -47,13 +55,17 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnDisciplinas)
-                .addContainerGap(311, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAlunos)
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(btnDisciplinas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDisciplinas)
+                    .addComponent(btnAlunos))
                 .addContainerGap(233, Short.MAX_VALUE))
         );
 
@@ -66,6 +78,12 @@ public class TelaInicial extends javax.swing.JFrame {
         this.setEnabled(false);
         new Disciplinas(this).setVisible(true);
     }//GEN-LAST:event_btnDisciplinasActionPerformed
+
+    private void btnAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunosActionPerformed
+         // abre a janela para cadastro de alunos
+        this.setEnabled(false);
+        new Alunos(this).setVisible(true);
+    }//GEN-LAST:event_btnAlunosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,6 +121,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlunos;
     private javax.swing.JButton btnDisciplinas;
     // End of variables declaration//GEN-END:variables
 }
