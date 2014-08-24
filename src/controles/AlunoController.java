@@ -20,7 +20,7 @@ public class AlunoController {
                 throw new Exception("Nome vazio");
             }
             else {
-                String insert = "insert into Disciplina (Nome) values ('" + aluno.getNome() + "')";
+                String insert = "INSERT INTO Aluno (Nome) VALUES ('" + aluno.getNome() + "')";
 
                 AcessoBanco bd = new AcessoBanco();
                 bd.executar(insert);
