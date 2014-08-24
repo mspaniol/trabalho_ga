@@ -122,6 +122,7 @@ public class Disciplinas extends javax.swing.JFrame {
             controlador.cadastrarDisciplina(d);
 
             JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso");
+            txtNome.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar disciplina: " + e.getMessage());
         }

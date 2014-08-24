@@ -130,6 +130,7 @@ public class Alunos extends javax.swing.JFrame {
             controlador.cadastrarAluno(aluno);
 
             JOptionPane.showMessageDialog(this, "Aluno cadastrado com sucesso");
+            txtNome.setText("");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar aluno: " + e.getMessage());
         }
