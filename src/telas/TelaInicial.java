@@ -108,7 +108,9 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlunosActionPerformed
 
     private void btnEquipesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipesActionPerformed
-        // TODO add your handling code here:
+        // abre a janela para cadastro de equipes
+        this.setEnabled(false);
+        new Equipes(this).setVisible(true);
     }//GEN-LAST:event_btnEquipesActionPerformed
 
     private void btnTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurmasActionPerformed
