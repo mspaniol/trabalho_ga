@@ -3,30 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package telas;
 
-import controles.DisciplinaController;
-import entidades.Disciplina;
+import controles.AlunoController;
+import entidades.Aluno;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author mozart
+ * @author JC
  */
-public class Disciplinas extends javax.swing.JFrame {
+public class Alunos extends javax.swing.JFrame {
 
     private TelaInicial tela;
+
     /**
-     * Creates new form Disciplinas
+     * Creates new form Alunos
      */
-    private Disciplinas() {
+    public Alunos() {
         initComponents();
     }
-    
-    public Disciplinas(TelaInicial tela) {
+
+    public Alunos(TelaInicial tela) {
         this();
-        
         this.tela = tela;
     }
 
@@ -44,8 +43,7 @@ public class Disciplinas extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Disciplinas");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -74,16 +72,16 @@ public class Disciplinas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSair)))
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,47 +90,43 @@ public class Disciplinas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnSair))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        // ativar eventos da tela principal
         this.tela.setEnabled(true);
         this.tela.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
-    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // salva a disciplina
-        try {
-            String nome = txtNome.getText();
-
-            Disciplina d = new Disciplina(nome);
-
-            DisciplinaController controlador = new DisciplinaController();
-
-            controlador.cadastrarDisciplina(d);
-
-            JOptionPane.showMessageDialog(this, "Disciplina cadastrada com sucesso");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar disciplina: " + e.getMessage());
-        }
-    }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    /**
-     * fecha a janela de cadastro de disciplinas
-     * @param evt 
-     */
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.tela.setEnabled(true);
         this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // salva a alunos
+        try {
+            String nome = txtNome.getText();
+
+            Aluno aluno = new Aluno(nome);
+
+            AlunoController controlador = new AlunoController();
+
+            controlador.cadastrarAluno(aluno);
+
+            JOptionPane.showMessageDialog(this, "Aluno cadastrada com sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar disciplina: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,20 +145,20 @@ public class Disciplinas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Disciplinas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Alunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Disciplinas().setVisible(true);
+                new Alunos().setVisible(true);
             }
         });
     }
