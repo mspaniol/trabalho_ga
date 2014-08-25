@@ -51,8 +51,8 @@ public class Trabalho implements Serializable {
     @Column(name = "Nota")
     private Float nota;
     @Lob
-    @Column(name = "Oberva\u00e7\u00e3o")
-    private String obervação;
+    @Column(name = "Observacao")
+    private String observacao;
     @JoinColumn(name = "DisciplinaID", referencedColumnName = "DisciplinaID")
     @ManyToOne(optional = false)
     private Disciplina disciplinaID;
@@ -105,12 +105,12 @@ public class Trabalho implements Serializable {
         this.nota = nota;
     }
 
-    public String getObervação() {
-        return obervação;
+    public String getObservacao() {
+        return observacao;
     }
 
-    public void setObervação(String obervação) {
-        this.obervação = obervação;
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 
     public Disciplina getDisciplinaID() {

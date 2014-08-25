@@ -6,6 +6,8 @@
 
 package entidadesBD;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -19,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Equipe.findByEquipeID", query = "SELECT e FROM Equipe e WHERE e.equipeID = :equipeID"),
     @NamedQuery(name = "Equipe.findByNome", query = "SELECT e FROM Equipe e WHERE e.nome = :nome")})
 public class Equipe implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,7 +70,9 @@ public class Equipe implements Serializable {
     }
 
     public void setEquipeID(Integer equipeID) {
+        Integer oldEquipeID = this.equipeID;
         this.equipeID = equipeID;
+        changeSupport.firePropertyChange("equipeID", oldEquipeID, equipeID);
     }
 
     public String getNome() {
@@ -73,7 +80,9 @@ public class Equipe implements Serializable {
     }
 
     public void setNome(String nome) {
+        String oldNome = this.nome;
         this.nome = nome;
+        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     @XmlTransient
@@ -116,7 +125,15 @@ public class Equipe implements Serializable {
 
     @Override
     public String toString() {
-        return "entidadesBD.Equipe[ equipeID=" + equipeID + " ]";
+        return this.getNome();
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
