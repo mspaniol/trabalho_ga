@@ -6,6 +6,8 @@
 
 package controles;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -30,6 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Disciplina.findByDisciplinaID", query = "SELECT d FROM Disciplina d WHERE d.disciplinaID = :disciplinaID"),
     @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome")})
 public class Disciplina implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,7 +62,9 @@ public class Disciplina implements Serializable {
     }
 
     public void setDisciplinaID(Integer disciplinaID) {
+        Integer oldDisciplinaID = this.disciplinaID;
         this.disciplinaID = disciplinaID;
+        changeSupport.firePropertyChange("disciplinaID", oldDisciplinaID, disciplinaID);
     }
 
     public String getNome() {
@@ -65,9 +72,16 @@ public class Disciplina implements Serializable {
     }
 
     public void setNome(String nome) {
+        String oldNome = this.nome;
         this.nome = nome;
+        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
+    @Override  
+    public String toString() {  
+        return this.getNome();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -88,9 +102,12 @@ public class Disciplina implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "controles.Disciplina[ disciplinaID=" + disciplinaID + " ]";
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

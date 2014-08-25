@@ -32,6 +32,7 @@ public class TelaInicial extends javax.swing.JFrame {
         btnAlunos = new javax.swing.JButton();
         btnEquipes = new javax.swing.JButton();
         btnTurmas = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tela inicial");
@@ -64,19 +65,29 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Turma x Aluno");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnDisciplinas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAlunos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEquipes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTurmas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnDisciplinas)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAlunos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEquipes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTurmas))
+                    .addComponent(jButton1))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -88,7 +99,9 @@ public class TelaInicial extends javax.swing.JFrame {
                     .addComponent(btnAlunos)
                     .addComponent(btnEquipes)
                     .addComponent(btnTurmas))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,8 +129,14 @@ public class TelaInicial extends javax.swing.JFrame {
     private void btnTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurmasActionPerformed
         // TODO add your handling code here:
         this.setEnabled(false);
-        //new Turmas(this).setVisible(true);
+        new Turmas(this).setVisible(true);
     }//GEN-LAST:event_btnTurmasActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setEnabled(false);
+        new TurmaAluno(this).setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,5 +178,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnDisciplinas;
     private javax.swing.JButton btnEquipes;
     private javax.swing.JButton btnTurmas;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

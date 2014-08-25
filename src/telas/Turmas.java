@@ -6,17 +6,32 @@
 
 package telas;
 
+import controles.TurmaController;
+import entidades.Disciplina;
+import entidades.Turma;
+import java.awt.Component;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mozart
  */
 public class Turmas extends javax.swing.JFrame {
 
+    private TelaInicial tela;
     /**
      * Creates new form Turmas
      */
     public Turmas() {
         initComponents();
+    }
+    
+    public Turmas(TelaInicial tela){
+        this();
+        
+        this.tela = tela;
     }
 
     /**
@@ -27,22 +42,113 @@ public class Turmas extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        trabalho_gaPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("trabalho_gaPU").createEntityManager();
+        disciplinaQuery = java.beans.Beans.isDesignTime() ? null : trabalho_gaPUEntityManager.createQuery("SELECT d FROM Disciplina d");
+        disciplinaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : disciplinaQuery.getResultList();
+        jcDisciplina = new javax.swing.JComboBox();
+        lblDisciplina = new javax.swing.JLabel();
+        lblSemestre = new javax.swing.JLabel();
+        txtSemestre = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
+        btnSair = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Turmas");
+
+        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, disciplinaList, jcDisciplina);
+        bindingGroup.addBinding(jComboBoxBinding);
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, disciplinaList, org.jdesktop.beansbinding.ObjectProperty.create(), jcDisciplina, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        bindingGroup.addBinding(binding);
+
+        lblDisciplina.setText("Disciplina");
+
+        lblSemestre.setText("Semestre");
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblDisciplina)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblSemestre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSemestre))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSair)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDisciplina))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSemestre)
+                    .addComponent(txtSemestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnSair))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        // TODO add your handling code here
+        this.tela.setEnabled(true);
+        
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // TODO add your handling code here:
+        try {
+        String semestre = txtSemestre.getText();
+        controles.Disciplina disciplina = (controles.Disciplina)jcDisciplina.getSelectedItem();
+        
+        Turma t = new Turma();
+        t.setSemestre(semestre);
+        t.setDisciplinaId(disciplina.getDisciplinaID());
+        
+        TurmaController controlador = new TurmaController();
+        controlador.cadastrarTurma(t);
+        JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar Turma: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +186,15 @@ public class Turmas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnSair;
+    private java.util.List<controles.Disciplina> disciplinaList;
+    private javax.persistence.Query disciplinaQuery;
+    private javax.swing.JComboBox jcDisciplina;
+    private javax.swing.JLabel lblDisciplina;
+    private javax.swing.JLabel lblSemestre;
+    private javax.persistence.EntityManager trabalho_gaPUEntityManager;
+    private javax.swing.JTextField txtSemestre;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
