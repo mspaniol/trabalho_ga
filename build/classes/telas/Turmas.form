@@ -22,7 +22,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;controles.Disciplina&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;entidadesBD.Disciplina&gt;"/>
       </AuxValues>
     </Component>
   </NonVisualComponents>
@@ -52,23 +52,24 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblDisciplina" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblDisciplina" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSemestre" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jcDisciplina" min="-2" pref="304" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblSemestre" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtSemestre" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jcDisciplina" pref="270" max="32767" attributes="0"/>
+                          <Component id="txtSemestre" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="187" max="32767" attributes="0"/>
                       <Component id="btnSair" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="39" max="32767" attributes="0"/>
+              <EmptySpace pref="71" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,10 +78,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jcDisciplina" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblDisciplina" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcDisciplina" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblSemestre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSemestre" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -90,22 +91,22 @@
                   <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSair" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="190" max="32767" attributes="0"/>
+              <EmptySpace pref="202" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblDisciplina">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Disciplina"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JComboBox" name="jcDisciplina">
       <BindingProperties>
         <BindingProperty name="elements" source="disciplinaList" target="jcDisciplina" targetPath="elements" updateStrategy="0" immediately="false"/>
         <BindingProperty name="selectedItem" source="disciplinaList" target="jcDisciplina" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
       </BindingProperties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDisciplina">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Disciplina"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSemestre">
       <Properties>

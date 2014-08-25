@@ -1,15 +1,15 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor. testre
+ * and open the template in the editor.
  */
 
-package controles;
+package entidadesBD;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,24 +17,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author jonathan
+ * @author mozart
  */
 @Entity
 @Table(name = "aluno")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Aluno.findAll", query = "SELECT * FROM Aluno"),
-    @NamedQuery(name = "Aluno.findByAlunoID", query = "SELECT * FROM Aluno d WHERE alunoID = :alunoID"),
-    @NamedQuery(name = "Aluno.findByNome", query = "SELECT * FROM Aluno d WHERE .nome = :nome")})
+    @NamedQuery(name = "Aluno.findAll", query = "SELECT a FROM Aluno a"),
+    @NamedQuery(name = "Aluno.findByAlunoID", query = "SELECT a FROM Aluno a WHERE a.alunoID = :alunoID"),
+    @NamedQuery(name = "Aluno.findByNome", query = "SELECT a FROM Aluno a WHERE a.nome = :nome")})
 public class Aluno implements Serializable {
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +43,10 @@ public class Aluno implements Serializable {
     @Basic(optional = false)
     @Column(name = "Nome")
     private String nome;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alunoID")
+    private List<Equipealuno> equipealunoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "alunoID")
+    private List<Turmaaluno> turmaalunoList;
 
     public Aluno() {
     }
@@ -62,9 +65,7 @@ public class Aluno implements Serializable {
     }
 
     public void setAlunoID(Integer alunoID) {
-        Integer oldAlunoID = this.alunoID;
         this.alunoID = alunoID;
-        changeSupport.firePropertyChange("alunoID", oldAlunoID, alunoID);
     }
 
     public String getNome() {
@@ -72,9 +73,25 @@ public class Aluno implements Serializable {
     }
 
     public void setNome(String nome) {
-        String oldNome = this.nome;
         this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
+    }
+
+    @XmlTransient
+    public List<Equipealuno> getEquipealunoList() {
+        return equipealunoList;
+    }
+
+    public void setEquipealunoList(List<Equipealuno> equipealunoList) {
+        this.equipealunoList = equipealunoList;
+    }
+
+    @XmlTransient
+    public List<Turmaaluno> getTurmaalunoList() {
+        return turmaalunoList;
+    }
+
+    public void setTurmaalunoList(List<Turmaaluno> turmaalunoList) {
+        this.turmaalunoList = turmaalunoList;
     }
 
     @Override
@@ -99,15 +116,7 @@ public class Aluno implements Serializable {
 
     @Override
     public String toString() {
-        return this.getNome();
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "entidadesBD.Aluno[ alunoID=" + alunoID + " ]";
     }
     
 }

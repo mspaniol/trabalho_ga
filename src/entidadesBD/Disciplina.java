@@ -1,15 +1,17 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor. testre
+ * and open the template in the editor.
  */
 
-package controles;
+package entidadesBD;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,9 +19,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -44,6 +48,10 @@ public class Disciplina implements Serializable {
     @Basic(optional = false)
     @Column(name = "Nome")
     private String nome;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "disciplinaID")
+    private List<Turma> turmaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "disciplinaID")
+    private List<Trabalho> trabalhoList;
 
     public Disciplina() {
     }
@@ -77,11 +85,24 @@ public class Disciplina implements Serializable {
         changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
-    @Override  
-    public String toString() {  
-        return this.getNome();
+    @XmlTransient
+    public List<Turma> getTurmaList() {
+        return turmaList;
     }
-    
+
+    public void setTurmaList(List<Turma> turmaList) {
+        this.turmaList = turmaList;
+    }
+
+    @XmlTransient
+    public List<Trabalho> getTrabalhoList() {
+        return trabalhoList;
+    }
+
+    public void setTrabalhoList(List<Trabalho> trabalhoList) {
+        this.trabalhoList = trabalhoList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -100,6 +121,11 @@ public class Disciplina implements Serializable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return this.getNome();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

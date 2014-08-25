@@ -135,7 +135,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setEnabled(false);
-        new TurmaAluno(this).setVisible(true);
+        //new TurmaAluno(this).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

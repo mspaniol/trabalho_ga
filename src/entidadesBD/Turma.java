@@ -4,36 +4,38 @@
  * and open the template in the editor.
  */
 
-package telas;
+package entidadesBD;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author mozart
  */
 @Entity
-@Table(name = "turma", catalog = "trabalho_ga", schema = "")
+@Table(name = "turma")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t"),
     @NamedQuery(name = "Turma.findByTurmaID", query = "SELECT t FROM Turma t WHERE t.turmaID = :turmaID"),
-    @NamedQuery(name = "Turma.findByDisciplinaID", query = "SELECT t FROM Turma t WHERE t.disciplinaID = :disciplinaID"),
     @NamedQuery(name = "Turma.findBySemestre", query = "SELECT t FROM Turma t WHERE t.semestre = :semestre")})
 public class Turma implements Serializable {
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,11 +43,13 @@ public class Turma implements Serializable {
     @Column(name = "TurmaID")
     private Integer turmaID;
     @Basic(optional = false)
-    @Column(name = "DisciplinaID")
-    private int disciplinaID;
-    @Basic(optional = false)
     @Column(name = "Semestre")
     private String semestre;
+    @JoinColumn(name = "DisciplinaID", referencedColumnName = "DisciplinaID")
+    @ManyToOne(optional = false)
+    private Disciplina disciplinaID;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "turmaID")
+    private List<Turmaaluno> turmaalunoList;
 
     public Turma() {
     }
@@ -54,9 +58,8 @@ public class Turma implements Serializable {
         this.turmaID = turmaID;
     }
 
-    public Turma(Integer turmaID, int disciplinaID, String semestre) {
+    public Turma(Integer turmaID, String semestre) {
         this.turmaID = turmaID;
-        this.disciplinaID = disciplinaID;
         this.semestre = semestre;
     }
 
@@ -65,19 +68,7 @@ public class Turma implements Serializable {
     }
 
     public void setTurmaID(Integer turmaID) {
-        Integer oldTurmaID = this.turmaID;
         this.turmaID = turmaID;
-        changeSupport.firePropertyChange("turmaID", oldTurmaID, turmaID);
-    }
-
-    public int getDisciplinaID() {
-        return disciplinaID;
-    }
-
-    public void setDisciplinaID(int disciplinaID) {
-        int oldDisciplinaID = this.disciplinaID;
-        this.disciplinaID = disciplinaID;
-        changeSupport.firePropertyChange("disciplinaID", oldDisciplinaID, disciplinaID);
     }
 
     public String getSemestre() {
@@ -85,9 +76,24 @@ public class Turma implements Serializable {
     }
 
     public void setSemestre(String semestre) {
-        String oldSemestre = this.semestre;
         this.semestre = semestre;
-        changeSupport.firePropertyChange("semestre", oldSemestre, semestre);
+    }
+
+    public Disciplina getDisciplinaID() {
+        return disciplinaID;
+    }
+
+    public void setDisciplinaID(Disciplina disciplinaID) {
+        this.disciplinaID = disciplinaID;
+    }
+
+    @XmlTransient
+    public List<Turmaaluno> getTurmaalunoList() {
+        return turmaalunoList;
+    }
+
+    public void setTurmaalunoList(List<Turmaaluno> turmaalunoList) {
+        this.turmaalunoList = turmaalunoList;
     }
 
     @Override
@@ -112,15 +118,7 @@ public class Turma implements Serializable {
 
     @Override
     public String toString() {
-        return "telas.Turma[ turmaID=" + turmaID + " ]";
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "entidadesBD.Turma[ turmaID=" + turmaID + " ]";
     }
     
 }
