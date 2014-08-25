@@ -146,7 +146,7 @@ public class Turmas extends javax.swing.JFrame {
         controlador.cadastrarTurma(t);
         JOptionPane.showMessageDialog(this, "Turma cadastrada com sucesso");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar Turma: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar turma: " + e.getMessage());
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 

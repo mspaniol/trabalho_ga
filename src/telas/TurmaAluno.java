@@ -34,11 +34,7 @@ public class TurmaAluno extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        trabalho_gaPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("trabalho_gaPU").createEntityManager();
-        alunoQuery = java.beans.Beans.isDesignTime() ? null : trabalho_gaPUEntityManager.createQuery("SELECT a FROM Aluno a");
-        alunoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : alunoQuery.getResultList();
         jcAluno = new javax.swing.JComboBox();
         jcTurma = new javax.swing.JComboBox();
         btnCadastrar = new javax.swing.JButton();
@@ -48,9 +44,6 @@ public class TurmaAluno extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Turma x Aluno");
-
-        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, alunoList, jcAluno);
-        bindingGroup.addBinding(jComboBoxBinding);
 
         btnCadastrar.setText("Cadastrar");
 
@@ -104,8 +97,6 @@ public class TurmaAluno extends javax.swing.JFrame {
                 .addContainerGap(209, Short.MAX_VALUE))
         );
 
-        bindingGroup.bind();
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -153,15 +144,11 @@ public class TurmaAluno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.util.List<controles.Aluno> alunoList;
-    private javax.persistence.Query alunoQuery;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JComboBox jcAluno;
     private javax.swing.JComboBox jcTurma;
-    private javax.persistence.EntityManager trabalho_gaPUEntityManager;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
