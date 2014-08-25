@@ -6,6 +6,8 @@
 
 package entidadesBD;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -21,6 +23,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,6 +39,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Turma.findByTurmaID", query = "SELECT t FROM Turma t WHERE t.turmaID = :turmaID"),
     @NamedQuery(name = "Turma.findBySemestre", query = "SELECT t FROM Turma t WHERE t.semestre = :semestre")})
 public class Turma implements Serializable {
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,7 +73,9 @@ public class Turma implements Serializable {
     }
 
     public void setTurmaID(Integer turmaID) {
+        Integer oldTurmaID = this.turmaID;
         this.turmaID = turmaID;
+        changeSupport.firePropertyChange("turmaID", oldTurmaID, turmaID);
     }
 
     public String getSemestre() {
@@ -76,7 +83,9 @@ public class Turma implements Serializable {
     }
 
     public void setSemestre(String semestre) {
+        String oldSemestre = this.semestre;
         this.semestre = semestre;
+        changeSupport.firePropertyChange("semestre", oldSemestre, semestre);
     }
 
     public Disciplina getDisciplinaID() {
@@ -84,7 +93,9 @@ public class Turma implements Serializable {
     }
 
     public void setDisciplinaID(Disciplina disciplinaID) {
+        Disciplina oldDisciplinaID = this.disciplinaID;
         this.disciplinaID = disciplinaID;
+        changeSupport.firePropertyChange("disciplinaID", oldDisciplinaID, disciplinaID);
     }
 
     @XmlTransient
@@ -118,7 +129,15 @@ public class Turma implements Serializable {
 
     @Override
     public String toString() {
-        return "entidadesBD.Turma[ turmaID=" + turmaID + " ]";
+        return this.getDisciplinaID().getNome() + " - " + this.getSemestre();
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
