@@ -6,6 +6,8 @@
 package controles;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -93,4 +95,5 @@ public class Equipe implements Serializable {
         return "controles.Equipe[ equipeID=" + equipeID + " ]";
     }
 
+   
 }
