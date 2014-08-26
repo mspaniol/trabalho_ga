@@ -7,6 +7,24 @@
         <Property name="persistenceUnit" type="java.lang.String" value="trabalho_gaPU"/>
       </Properties>
     </Component>
+    <Component class="javax.persistence.Query" name="equipeQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT e FROM Equipe e"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="trabalho_gaPUEntityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="equipeList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="equipeQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;entidadesBD.Equipe&gt;"/>
+      </AuxValues>
+    </Component>
     <Component class="javax.persistence.Query" name="alunoQuery">
       <Properties>
         <Property name="query" type="java.lang.String" value="SELECT a FROM Aluno a"/>
@@ -25,28 +43,10 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;entidadesBD.Aluno&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.persistence.Query" name="turmaQuery">
-      <Properties>
-        <Property name="query" type="java.lang.String" value="SELECT t FROM Turma t"/>
-        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
-          <ComponentRef name="trabalho_gaPUEntityManager"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="java.util.List" name="turmaList">
-      <Properties>
-        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
-          <ComponentRef name="turmaQuery"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;entidadesBD.Turma&gt;"/>
-      </AuxValues>
-    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Turmas e Alunos"/>
+    <Property name="title" type="java.lang.String" value="Cadastrar aluno em uma Equipe"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -70,33 +70,26 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="cbAluno" alignment="1" max="32767" attributes="0"/>
+                  <Component id="cbEquipe" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblAluno" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblTurma" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblEquipe" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAluno" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jcAluno" pref="270" max="32767" attributes="0"/>
-                          <Component id="jcTurma" max="32767" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="183" max="32767" attributes="0"/>
+                      <EmptySpace pref="260" max="32767" attributes="0"/>
                       <Component id="btnSair" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jSeparator1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,15 +97,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblAluno" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcAluno" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="lblEquipe" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cbEquipe" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTurma" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcTurma" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="lblAluno" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cbAluno" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -120,41 +111,41 @@
                   <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSair" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="193" max="32767" attributes="0"/>
+              <EmptySpace pref="153" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblAluno">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Aluno"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jcAluno">
+    <Component class="javax.swing.JComboBox" name="cbEquipe">
       <BindingProperties>
-        <BindingProperty name="elements" source="alunoList" target="jcAluno" targetPath="elements" updateStrategy="0" immediately="false"/>
-        <BindingProperty name="selectedItem" source="alunoList" target="jcAluno" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="elements" source="equipeList" target="cbEquipe" targetPath="elements" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="selectedItem" source="equipeList" target="cbEquipe" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
       </BindingProperties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblTurma">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Turma"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jcTurma">
+    <Component class="javax.swing.JComboBox" name="cbAluno">
       <BindingProperties>
-        <BindingProperty name="elements" source="turmaList" target="jcTurma" targetPath="elements" updateStrategy="0" immediately="false"/>
-        <BindingProperty name="selectedItem" source="turmaList" target="jcTurma" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="elements" source="alunoList" target="cbAluno" targetPath="elements" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="selectedItem" source="alunoList" target="cbAluno" targetPath="selectedItem" updateStrategy="0" immediately="false"/>
       </BindingProperties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="text" type="java.lang.String" value="Vincular"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEquipe">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Equipe"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAluno">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Aluno"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnSair">
       <Properties>

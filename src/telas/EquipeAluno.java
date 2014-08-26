@@ -6,27 +6,27 @@
 
 package telas;
 
-import controles.TurmaAlunoController;
+import controles.EquipeAlunoController;
 import entidadesBD.Aluno;
-import entidadesBD.Turma;
-import entidadesBD.Turmaaluno;
+import entidadesBD.Equipe;
+import entidadesBD.Equipealuno;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author mozart
+ * @author Jonathan
  */
-public class TurmasAlunos extends javax.swing.JFrame {
+public class EquipeAluno extends javax.swing.JFrame {
     private TelaInicial tela;
 
     /**
-     * Creates new form TurmasAlunos
+     * Creates new form EquipeAluno
      */
-    public TurmasAlunos() {
+    public EquipeAluno() {
         initComponents();
     }
-    
-    public TurmasAlunos(TelaInicial tela) {
+
+    public EquipeAluno(TelaInicial tela) {
         this();
         
         this.tela = tela;
@@ -43,46 +43,46 @@ public class TurmasAlunos extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         trabalho_gaPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("trabalho_gaPU").createEntityManager();
+        equipeQuery = java.beans.Beans.isDesignTime() ? null : trabalho_gaPUEntityManager.createQuery("SELECT e FROM Equipe e");
+        equipeList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : equipeQuery.getResultList();
         alunoQuery = java.beans.Beans.isDesignTime() ? null : trabalho_gaPUEntityManager.createQuery("SELECT a FROM Aluno a");
         alunoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : alunoQuery.getResultList();
-        turmaQuery = java.beans.Beans.isDesignTime() ? null : trabalho_gaPUEntityManager.createQuery("SELECT t FROM Turma t");
-        turmaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : turmaQuery.getResultList();
-        lblAluno = new javax.swing.JLabel();
-        jcAluno = new javax.swing.JComboBox();
-        lblTurma = new javax.swing.JLabel();
-        jcTurma = new javax.swing.JComboBox();
+        cbEquipe = new javax.swing.JComboBox();
+        cbAluno = new javax.swing.JComboBox();
         btnCadastrar = new javax.swing.JButton();
+        lblEquipe = new javax.swing.JLabel();
+        lblAluno = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Turmas e Alunos");
+        setTitle("Cadastrar aluno em uma Equipe");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
 
-        lblAluno.setText("Aluno");
-
-        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, alunoList, jcAluno);
+        org.jdesktop.swingbinding.JComboBoxBinding jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, equipeList, cbEquipe);
         bindingGroup.addBinding(jComboBoxBinding);
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, alunoList, org.jdesktop.beansbinding.ObjectProperty.create(), jcAluno, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, equipeList, org.jdesktop.beansbinding.ObjectProperty.create(), cbEquipe, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
         bindingGroup.addBinding(binding);
 
-        lblTurma.setText("Turma");
-
-        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, turmaList, jcTurma);
+        jComboBoxBinding = org.jdesktop.swingbinding.SwingBindings.createJComboBoxBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, alunoList, cbAluno);
         bindingGroup.addBinding(jComboBoxBinding);
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, turmaList, org.jdesktop.beansbinding.ObjectProperty.create(), jcTurma, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, alunoList, org.jdesktop.beansbinding.ObjectProperty.create(), cbAluno, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"));
         bindingGroup.addBinding(binding);
 
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Vincular");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
+
+        lblEquipe.setText("Equipe");
+
+        lblAluno.setText("Aluno");
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -95,45 +95,41 @@ public class TurmasAlunos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbAluno, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbEquipe, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblAluno)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblTurma)
-                                .addGap(15, 15, 15)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jcAluno, 0, 270, Short.MAX_VALUE)
-                            .addComponent(jcTurma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblEquipe)
+                            .addComponent(lblAluno))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
-                        .addComponent(btnSair))
-                    .addComponent(jSeparator1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                        .addComponent(btnSair)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAluno)
-                    .addComponent(jcAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblEquipe)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbEquipe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTurma)
-                    .addComponent(jcTurma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblAluno)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
                     .addComponent(btnSair))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         bindingGroup.bind();
@@ -142,34 +138,33 @@ public class TurmasAlunos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        this.tela.setEnabled(true);
-        this.dispose();
-    }//GEN-LAST:event_btnSairActionPerformed
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        try {
-            Aluno a = (Aluno)jcAluno.getSelectedItem();
-            Turma t = (Turma)jcTurma.getSelectedItem();
+         try {
+            Equipe equipe = (Equipe)cbEquipe.getSelectedItem();
+            Aluno aluno = (Aluno)cbAluno.getSelectedItem();
 
-            Turmaaluno ta = new Turmaaluno();
-            ta.setAlunoID(a);
-            ta.setTurmaID(t);
+            Equipealuno equipeAluno = new Equipealuno();
+            equipeAluno.setEquipeID(equipe);
+            equipeAluno.setAlunoID(aluno);
 
-            TurmaAlunoController controlador = new TurmaAlunoController();
-            controlador.cadastrarTurmaAluno(ta);
+            EquipeAlunoController controlador = new EquipeAlunoController();
+            controlador.cadastrarEquipeAluno(equipeAluno);
             
-            JOptionPane.showMessageDialog(this, "Aluno vinculado a turma com sucesso");
+            JOptionPane.showMessageDialog(this, "Aluno vinculado a equipe com sucesso");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Erro ao vincular aluno com turma: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Erro ao vincular aluno com equipe: " + e.getMessage());
         }
-            
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.tela.setEnabled(true);
         this.tela.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.tela.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,20 +183,20 @@ public class TurmasAlunos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TurmasAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EquipeAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TurmasAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EquipeAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TurmasAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EquipeAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TurmasAlunos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EquipeAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TurmasAlunos().setVisible(true);
+                new EquipeAluno().setVisible(true);
             }
         });
     }
@@ -211,14 +206,14 @@ public class TurmasAlunos extends javax.swing.JFrame {
     private javax.persistence.Query alunoQuery;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnSair;
+    private javax.swing.JComboBox cbAluno;
+    private javax.swing.JComboBox cbEquipe;
+    private java.util.List<entidadesBD.Equipe> equipeList;
+    private javax.persistence.Query equipeQuery;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JComboBox jcAluno;
-    private javax.swing.JComboBox jcTurma;
     private javax.swing.JLabel lblAluno;
-    private javax.swing.JLabel lblTurma;
+    private javax.swing.JLabel lblEquipe;
     private javax.persistence.EntityManager trabalho_gaPUEntityManager;
-    private java.util.List<entidadesBD.Turma> turmaList;
-    private javax.persistence.Query turmaQuery;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
