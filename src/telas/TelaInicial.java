@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package telas;
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -98,6 +102,7 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblSistema)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -109,8 +114,7 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1)
-                            .addComponent(btnEquipeAluno)))
-                    .addComponent(lblSistema))
+                            .addComponent(btnEquipeAluno))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -142,27 +146,66 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnDisciplinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisciplinasActionPerformed
         // abre a janela para cadastro de disciplinas
-        this.setEnabled(false);
-        new Disciplinas(this).setVisible(true);
+//        this.setEnabled(false);
+//        new Disciplinas(this).setVisible(true);
+        exibirTela(3);
     }//GEN-LAST:event_btnDisciplinasActionPerformed
 
     private void btnAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunosActionPerformed
         // abre a janela para cadastro de alunos
-        this.setEnabled(false);
-        new Alunos(this).setVisible(true);
+//        this.setEnabled(false);
+//        new Alunos(this).setVisible(true);
+//        new AlunosDetalhes().setVisible(true);
+
+        exibirTela(2);
+//    }
     }//GEN-LAST:event_btnAlunosActionPerformed
 
     private void btnEquipesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipesActionPerformed
         // abre a janela para cadastro de equipes
-        this.setEnabled(false);
-        new Equipes(this).setVisible(true);
+//        this.setEnabled(false);
+//        new Equipes(this).setVisible(true);
+        exibirTela(4);
     }//GEN-LAST:event_btnEquipesActionPerformed
 
+    
     private void btnTurmasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTurmasActionPerformed
         // TODO add your handling code here:
         this.setEnabled(false);
         new Turmas(this).setVisible(true);
+//        exibirTela(1);
     }//GEN-LAST:event_btnTurmasActionPerformed
+
+    /**
+     * Inicializa as classes para a exibição da mesma
+     * @param numClasse defini a classe da tele que será exibida
+     */
+    public void exibirTela(int numClasse) {
+        this.setEnabled(false);
+        final JFrame frame = new Modelo(this);
+        switch (numClasse) {
+            case 1:
+//                frame.setContentPane(new TurmaDetalhes());
+                frame.setTitle("Turmas");
+                break;
+            case 2:
+                frame.setContentPane(new AlunoDetalhes());
+                frame.setTitle("Alunos");
+                break;
+            case 3:
+                frame.setContentPane(new DisciplinaDetalhes());
+                frame.setTitle("Disciplinas");
+                break;
+            case 4:
+                frame.setContentPane(new EquipeDetalhes());
+                frame.setTitle("Equipes");
+                break;
+            default:
+        }
+        
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:

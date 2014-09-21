@@ -3,21 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/D:/xampp/htdocs/trabalho_ga/src/telas/Equipes.java</file>
-            <file>file:/D:/xampp/htdocs/trabalho_ga/src/entidades/Equipe.java</file>
-            <file>file:/D:/xampp/htdocs/trabalho_ga/src/controles/Equipe.java</file>
-            <file>file:/D:/xampp/htdocs/trabalho_ga/src/controles/EquipeController.java</file>
-=======
-            <file>file:/C:/Users/mozart/Documents/NetBeansProjects/trabalho_ga/src/telas/TelaInicial.java</file>
-            <file>file:/C:/Users/mozart/Documents/NetBeansProjects/trabalho_ga/src/telas/TurmaAluno.java</file>
-            <file>file:/C:/Users/mozart/Documents/NetBeansProjects/trabalho_ga/src/controles/Aluno.java</file>
->>>>>>> 6440792f9755c7e1951013fd41e7f409ffc2168f
-=======
-            <file>file:/C:/Users/mozart/Documents/NetBeansProjects/trabalho_ga/src/telas/Trabalhos.java</file>
-            <file>file:/C:/Users/mozart/Documents/NetBeansProjects/trabalho_ga/src/controles/TrabalhoController.java</file>
->>>>>>> 2f46a368573bc316b5ba29db713f901c2f7799e5
+            <file>file:/D:/xampp/htdocs/trabalho_ga/src/trabalho_ga/AcessoBanco.java</file>
         </group>
     </open-files>
 </project-private>
